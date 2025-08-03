@@ -1,0 +1,258 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   SSV Inter College Login
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: 'Roboto', sans-serif;
+    }
+  </style>
+ </head>
+ <body class="bg-gray-100 min-h-screen flex flex-col">
+  <div class="flex flex-col justify-center items-center flex-grow px-4" id="login-screen">
+   <div class="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
+    <h1 class="text-3xl font-bold mb-6 text-center text-indigo-700">
+     SSV Inter College
+    </h1>
+    <form class="space-y-6" id="login-form">
+     <div>
+      <label class="block text-gray-700 font-semibold mb-2" for="userid">
+       User ID
+      </label>
+      <input autocomplete="username" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" id="userid" name="userid" placeholder="Enter your User ID" required="" type="text"/>
+     </div>
+     <div>
+      <label class="block text-gray-700 font-semibold mb-2" for="password">
+       Password
+      </label>
+      <input autocomplete="current-password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" id="password" name="password" placeholder="Enter your Password" required="" type="password"/>
+     </div>
+     <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-md transition" type="submit">
+      Login
+     </button>
+    </form>
+    <p class="text-red-600 mt-4 text-center hidden" id="error-msg">
+     Invalid User ID or Password
+    </p>
+   </div>
+  </div>
+  <div class="hidden flex flex-col min-h-screen" id="home-screen">
+   <!-- Header -->
+   <header class="bg-indigo-700 text-white flex items-center justify-between px-4 py-3 shadow-md">
+    <button aria-label="Open menu" class="text-white text-2xl focus:outline-none" id="menu-toggle">
+     <i class="fas fa-bars">
+     </i>
+    </button>
+    <h1 class="text-xl font-semibold">
+     SSV Inter College - Home
+    </h1>
+    <div class="w-8">
+    </div>
+   </header>
+   <!-- Drawer -->
+   <aside aria-label="Sidebar" class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-30 flex flex-col" id="drawer">
+    <div class="bg-indigo-700 text-white p-4 flex items-center justify-between">
+     <h2 class="font-semibold text-lg">
+      This app is made by Sasuke
+     </h2>
+     <button aria-label="Close menu" class="text-white text-xl focus:outline-none" id="drawer-close">
+      <i class="fas fa-times">
+      </i>
+     </button>
+    </div>
+    <nav class="flex-grow overflow-y-auto">
+     <ul class="p-4 space-y-3">
+      <li>
+       <button class="w-full text-left flex items-center space-x-3 px-3 py-2 rounded hover:bg-indigo-100 focus:outline-none focus:bg-indigo-100">
+        <i class="fas fa-home text-indigo-600">
+        </i>
+        <span>
+         Dashboard
+        </span>
+       </button>
+      </li>
+      <li>
+       <button class="w-full text-left flex items-center space-x-3 px-3 py-2 rounded hover:bg-indigo-100 focus:outline-none focus:bg-indigo-100">
+        <i class="fas fa-book text-indigo-600">
+        </i>
+        <span>
+         Courses
+        </span>
+       </button>
+      </li>
+      <li>
+       <button class="w-full text-left flex items-center space-x-3 px-3 py-2 rounded hover:bg-indigo-100 focus:outline-none focus:bg-indigo-100">
+        <i class="fas fa-calendar-alt text-indigo-600">
+        </i>
+        <span>
+         Events
+        </span>
+       </button>
+      </li>
+      <li>
+       <button class="w-full text-left flex items-center space-x-3 px-3 py-2 rounded hover:bg-indigo-100 focus:outline-none focus:bg-indigo-100">
+        <i class="fas fa-users text-indigo-600">
+        </i>
+        <span>
+         Students
+        </span>
+       </button>
+      </li>
+      <li>
+       <button class="w-full text-left flex items-center space-x-3 px-3 py-2 rounded hover:bg-indigo-100 focus:outline-none focus:bg-indigo-100">
+        <i class="fas fa-cogs text-indigo-600">
+        </i>
+        <span>
+         Settings
+        </span>
+       </button>
+      </li>
+     </ul>
+    </nav>
+    <div class="p-4 border-t border-gray-200">
+     <button class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-md transition flex items-center justify-center space-x-2" id="logout-btn">
+      <i class="fas fa-sign-out-alt">
+      </i>
+      <span>
+       Logout
+      </span>
+     </button>
+    </div>
+   </aside>
+   <!-- Overlay -->
+   <div aria-hidden="true" class="fixed inset-0 bg-black bg-opacity-30 hidden z-20" id="drawer-overlay" tabindex="-1">
+   </div>
+   <!-- Main content -->
+   <main class="flex-grow p-6 bg-gray-50 overflow-auto">
+    <section class="max-w-5xl mx-auto space-y-8">
+     <h2 class="text-2xl font-bold text-indigo-700 mb-4">
+      Welcome to SSV Inter College
+     </h2>
+     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+       <img alt="Library room with shelves full of books and students reading" class="mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/110e05ed-5358-42c8-3c99-79fce771667e.jpg" width="100"/>
+       <h3 class="text-lg font-semibold mb-2">
+        Library
+       </h3>
+       <p class="text-gray-600 text-center">
+        Access thousands of books and resources.
+       </p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+       <img alt="Students taking exams in a classroom with focused expressions" class="mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/575db7d6-fc8c-47ca-5c56-b5025d6ebe23.jpg" width="100"/>
+       <h3 class="text-lg font-semibold mb-2">
+        Exams
+       </h3>
+       <p class="text-gray-600 text-center">
+        Check your exam schedules and results.
+       </p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+       <img alt="Attendance register with students' names and check marks" class="mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/12d55af8-a860-49f9-a47e-2035ee04a462.jpg" width="100"/>
+       <h3 class="text-lg font-semibold mb-2">
+        Attendance
+       </h3>
+       <p class="text-gray-600 text-center">
+        View and manage attendance records.
+       </p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+       <img alt="School timetable displayed on a wall with colorful blocks for classes" class="mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/728acc28-2ade-4d8c-e239-0aa7f78689e4.jpg" width="100"/>
+       <h3 class="text-lg font-semibold mb-2">
+        Timetable
+       </h3>
+       <p class="text-gray-600 text-center">
+        See your daily and weekly class schedules.
+       </p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+       <img alt="Notification bell icon with alert badge" class="mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/1572f654-9d81-4ca7-245b-d0b71554cc84.jpg" width="100"/>
+       <h3 class="text-lg font-semibold mb-2">
+        Notifications
+       </h3>
+       <p class="text-gray-600 text-center">
+        Stay updated with latest announcements.
+       </p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+       <img alt="User profile avatar icon with settings gear" class="mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/a232cffb-5b4c-44aa-8494-ba839d8c8d47.jpg" width="100"/>
+       <h3 class="text-lg font-semibold mb-2">
+        Profile
+       </h3>
+       <p class="text-gray-600 text-center">
+        Manage your personal information.
+       </p>
+      </div>
+     </div>
+    </section>
+   </main>
+  </div>
+  <script>
+   const loginScreen = document.getElementById('login-screen');
+    const homeScreen = document.getElementById('home-screen');
+    const loginForm = document.getElementById('login-form');
+    const errorMsg = document.getElementById('error-msg');
+    const drawer = document.getElementById('drawer');
+    const drawerOverlay = document.getElementById('drawer-overlay');
+    const menuToggle = document.getElementById('menu-toggle');
+    const drawerClose = document.getElementById('drawer-close');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    // Credentials
+    const validUserId = 'sasuke';
+    const validPassword = '12345';
+
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const userId = loginForm.userid.value.trim();
+      const password = loginForm.password.value;
+
+      if (userId === validUserId && password === validPassword) {
+        errorMsg.classList.add('hidden');
+        loginScreen.classList.add('hidden');
+        homeScreen.classList.remove('hidden');
+        loginForm.reset();
+      } else {
+        errorMsg.classList.remove('hidden');
+      }
+    });
+
+    // Drawer open
+    menuToggle.addEventListener('click', () => {
+      drawer.classList.remove('-translate-x-full');
+      drawerOverlay.classList.remove('hidden');
+      drawerOverlay.focus();
+    });
+
+    // Drawer close
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+
+    function closeDrawer() {
+      drawer.classList.add('-translate-x-full');
+      drawerOverlay.classList.add('hidden');
+    }
+
+    // Logout
+    logoutBtn.addEventListener('click', () => {
+      closeDrawer();
+      homeScreen.classList.add('hidden');
+      loginScreen.classList.remove('hidden');
+    });
+
+    // Accessibility: close drawer on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !drawer.classList.contains('-translate-x-full')) {
+        closeDrawer();
+      }
+    });
+  </script>
+ </body>
+</html>
